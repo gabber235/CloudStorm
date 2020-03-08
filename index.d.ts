@@ -91,7 +91,7 @@ declare module "Cloudstorm" {
         protected onOpen(): void;
         protected onMessage(message: string | Buffer | { [key: string]: any }): void;
         protected onClose(code: number, reason: string): void;
-        protected sendMessage(data: { [key: string]: any }): Promise<void>;
+        public sendMessage(data: { [key: string]: any }): Promise<void>;
         protected close(code?: number, reason?: string): Promise<void>;
         private on(event: "error", cb: (data: Error | string) => void): this;
         private on(event: "ws_open", cb: () => void): this;
