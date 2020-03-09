@@ -1,7 +1,7 @@
 declare module "Cloudstorm" {
     import { EventEmitter } from "events";
     import * as WebSocket from "ws";
-    import { IClientOptions as IWSOptions } from "ws";
+    import { ClientOptions as IWSOptions } from "ws";
 
     export interface IWSMessage {
         op: number;
@@ -93,14 +93,14 @@ declare module "Cloudstorm" {
         protected onClose(code: number, reason: string): void;
         public sendMessage(data: { [key: string]: any }): Promise<void>;
         protected close(code?: number, reason?: string): Promise<void>;
-        private on(event: "error", cb: (data: Error | string) => void): this;
-        private on(event: "ws_open", cb: () => void): this;
-        private on(event: "ws_message", cb: (data: { [key: string]: any }) => void): this;
-        private on(event: "ws_close", cb: (code: number, reason: string) => void): this;
-        private once(event: "error", cb: (data: Error | string) => void): this;
-        private once(event: "ws_open", cb: () => void): this;
-        private once(event: "ws_message", cb: (data: { [key: string]: any }) => void): this;
-        private once(event: "ws_close", cb: (code: number, reason: String) => void): this;
+        public on(event: "error", cb: (data: Error | string) => void): this;
+        public on(event: "ws_open", cb: () => void): this;
+        public on(event: "ws_message", cb: (data: { [key: string]: any }) => void): this;
+        public on(event: "ws_close", cb: (code: number, reason: string) => void): this;
+        public once(event: "error", cb: (data: Error | string) => void): this;
+        public once(event: "ws_open", cb: () => void): this;
+        public once(event: "ws_message", cb: (data: { [key: string]: any }) => void): this;
+        public once(event: "ws_close", cb: (code: number, reason: String) => void): this;
     }
 
     export class DiscordConnector extends EventEmitter { // TODO: add events
@@ -129,14 +129,14 @@ declare module "Cloudstorm" {
         private _checkPresenceData(data: IPresence): IPresence;
         private _checkVoiceStateUpdateData(data: IVoiceStateUpdate): IVoiceStateUpdate;
         private _checkRequestGuildMembersData(data: IRequestGuildMembers): IRequestGuildMembers;
-        private on(event: "queueIdentify", cb: (data: number) => void): this;
-        private once(event: "queueIdentify", cb: (data: number) => void): this;
-        private on(event: "event", cb: (data: IWSMessage) => void): this;
-        private once(event: "event", cb: (data: IWSMessage) => void): this;
-        private on(event: "ready", cb: (data: boolean) => void): this;
-        private once(event: "ready", cb: (data: boolean) => void): this;
-        private on(event: "error", cb: (data: Error | string) => void): this;
-        private once(event: "error", cb: (data: Error | string) => void): this;
+        public on(event: "queueIdentify", cb: (data: number) => void): this;
+        public once(event: "queueIdentify", cb: (data: number) => void): this;
+        public on(event: "event", cb: (data: IWSMessage) => void): this;
+        public once(event: "event", cb: (data: IWSMessage) => void): this;
+        public on(event: "ready", cb: (data: boolean) => void): this;
+        public once(event: "ready", cb: (data: boolean) => void): this;
+        public on(event: "error", cb: (data: Error | string) => void): this;
+        public once(event: "error", cb: (data: Error | string) => void): this;
     }
 
     export class Shard extends EventEmitter {
@@ -146,14 +146,14 @@ declare module "Cloudstorm" {
         public ready: boolean;
         public connector: DiscordConnector;
         private constructor(id: number, client: Client);
-        private on(event: "disconnect", cb: () => void): this;
-        private on(event: "ready", cb: (data: boolean) => void): this;
-        private on(event: "error", cb: (data: Error) => void): this;
-        private on(event: "queueIdentify", cb: (data: number) => void): this;
-        private once(event: "disconnect", cb: () => void): this;
-        private once(event: "ready", cb: (data: boolean) => void): this;
-        private once(event: "error", cb: (data: Error) => void): this;
-        private once(event: "queueIdentify", cb: (data: number) => void): this;
+        public on(event: "disconnect", cb: () => void): this;
+        public on(event: "ready", cb: (data: boolean) => void): this;
+        public on(event: "error", cb: (data: Error) => void): this;
+        public on(event: "queueIdentify", cb: (data: number) => void): this;
+        public once(event: "disconnect", cb: () => void): this;
+        public once(event: "ready", cb: (data: boolean) => void): this;
+        public once(event: "error", cb: (data: Error) => void): this;
+        public once(event: "queueIdentify", cb: (data: number) => void): this;
         protected connect(): void;
         protected disconnect(): Promise<void>;
         protected statusUpdate(data: IPresence): Promise<void>;
@@ -179,7 +179,7 @@ declare module "Cloudstorm" {
         protected statusUpdate(data?: IPresence): void;
         protected shardStatusUpdate(shardId: number, data?: IPresence): void;
         protected voiceStateUpdate(shardId: number, data: IVoiceStateUpdate): Promise<void>;
-        protected requestGuildMembers(shardId: number, data: IRequestGuildMembers): Promise<void>:
+        protected requestGuildMembers(shardId: number, data: IRequestGuildMembers): Promise<void>;
     }
 
     export class Client extends EventEmitter { // TODO: add events
