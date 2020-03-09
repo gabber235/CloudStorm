@@ -85,7 +85,7 @@ declare module "Cloudstorm" {
         private statusBucket: RatelimitBucket;
         private zlibInflate: any; // TODO: set type
         private constructor(address: string, protocols: string[], options: IWSOptions);
-        protected readonly rawWs(): WebSocket;
+        // protected readonly rawWs(): WebSocket;
         protected bindWs(ws: WebSocket): void;
         protected recreateWs(address: string, options?: IWSOptions): void;
         protected onOpen(): void;
