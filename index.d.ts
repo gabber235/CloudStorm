@@ -1,7 +1,7 @@
 declare module "Cloudstorm" {
     import { EventEmitter } from "events";
     import * as WebSocket from "ws";
-    import { ClientOptions as IWSOptions } from "ws";
+    import { IClientOptions as IWSOptions } from "ws";
 
     export interface IWSMessage {
         op: number;
@@ -85,7 +85,7 @@ declare module "Cloudstorm" {
         private statusBucket: RatelimitBucket;
         private zlibInflate: any; // TODO: set type
         private constructor(address: string, protocols: string[], options: IWSOptions);
-        protected get rawWs(): WebSocket;
+        protected readonly rawWs(): WebSocket;
         protected bindWs(ws: WebSocket): void;
         protected recreateWs(address: string, options?: IWSOptions): void;
         protected onOpen(): void;
@@ -190,7 +190,7 @@ declare module "Cloudstorm" {
         public constructor(token: string, options?: IClientOptions);
         public connect(): Promise<void>;
         public getGateway(): Promise<string>;
-        public getGatewayBot(): Promise<IGatewayData>;
+        // public getGatewayBot(): Promise<IGatewayData>;
         public disconnect(): void;
         public statusUpdate(data: IPresence): void;
         public shardStatusUpdate(shardId: number, data: IPresence): Promise<void>;
